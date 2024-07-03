@@ -96,7 +96,7 @@ export const LoginPage: React.FC<{}> = () => {
                       onClick={() => setShowPassword(!showPassword)}
                       sx={{ marginLeft: "2vh" }}
                       onMouseDown={(e: MouseEvent<HTMLButtonElement>) => e.preventDefault()}
-                    >f
+                    >
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
