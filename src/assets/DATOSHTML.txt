@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Estudiante</title>
+    <link rel="stylesheet" href="/CSS/prueba3.css">
+</head>
+<body class="MisDatosBody">
+    <form action="">
+        <div class="ContenedorPerfilMD">
+            <div class="CabezaPerfilMD">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9ef_SKxiBJra39K9exN9UuOiAwyxNN_mnLg&s" alt="Foto de perfil" class="PerfilFotoMD">
+                <h1 class="PerfilNombreMD">Maldito Benito Maldini Bolaños</h1>
+                <!--<button class="EditarPerfilBMD">EDITAR PERFIL</button>-->
+            </div>
+            <div class="InfoMD">
+                <h2>INFORMACIÓN ACADÉMICA</h2>
+                <div class="InfoDetallesMD">
+                    <div class="DivDetallesMD">
+                        <div class="Divlabel">Nombres: </div>
+                        <div class="DivValue">Maldito Benito</div>
+                    </div>
+                    <div class="DivDetallesMD">
+                        <div class="Divlabel">Apellidos</div>
+                        <div class="DivValue">Maldini Bolaños</div>
+                    </div>
+                    <div class="DivDetallesMD">
+                        <div class="Divlabel">Correo electronico: </div>
+                        <div class="DivValue">bolaños@gmail.com</div>
+                    </div>
+                    <div class="DivDetallesMD">
+                        <div class="Divlabel">Carrera/oficio</div>
+                        <div class="DivValue">autor de fhs</div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
