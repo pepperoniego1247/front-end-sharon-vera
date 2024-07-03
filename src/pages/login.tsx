@@ -108,7 +108,6 @@ export const LoginPage: React.FC<{}> = () => {
                 { isError ? "Ha ocurrido un error, ingrese sus datos nuevamente." : "Ingrese su contraseña." }
               </FormHelperText>
             </FormControl>
-            //TODO ARREGLAR ESTA NAVEGACION
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
               <Link component="button" onClick={() => navigate("/user/get_back_password/")} underline="hover">
                 {'¿Has olvidado la contraseña?'}
