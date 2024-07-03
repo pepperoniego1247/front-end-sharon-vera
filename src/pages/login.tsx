@@ -96,7 +96,7 @@ export const LoginPage: React.FC<{}> = () => {
                       onClick={() => setShowPassword(!showPassword)}
                       sx={{ marginLeft: "2vh" }}
                       onMouseDown={(e: MouseEvent<HTMLButtonElement>) => e.preventDefault()}
-                    >
+                    >f
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
@@ -108,9 +108,9 @@ export const LoginPage: React.FC<{}> = () => {
                 { isError ? "Ha ocurrido un error, ingrese sus datos nuevamente." : "Ingrese su contraseña." }
               </FormHelperText>
             </FormControl>
-
+            //TODO ARREGLAR ESTA NAVEGACION
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <Link href="/user/get_back_password/" underline="hover">
+              <Link component="button" onClick={() => navigate("/user/get_back_password/")} underline="hover">
                 {'¿Has olvidado la contraseña?'}
               </Link>
             </Box>
