@@ -1,5 +1,5 @@
 import { Grid, Stack, TextField, Button, Typography, Box, FormControl, FormHelperText, InputLabel, OutlinedInput, IconButton, Divider, Link, InputAdornment, CircularProgress } from "@mui/material";
-import { MouseEvent, ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { MouseEvent, ChangeEvent, FormEvent, useEffect, useState, KeyboardEventHandler } from "react";
 import { LoginType } from "../helpers/types";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
@@ -23,8 +23,6 @@ export const LoginPage: React.FC<{}> = () => {
   const [isError, setIsError] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const navigate = useNavigate();
-
-  // const mutation = RegisterData("login", "http://localhost:3001/user/login/", loginData);
 
   const mutation = useMutation({
     mutationFn: async () => {
@@ -62,14 +60,18 @@ export const LoginPage: React.FC<{}> = () => {
   }
 
   return (
-    <Grid className="container-login-body" container>
-      <Grid sx={{ backgroundColor: "white", height: "60%", width: "40vh", justifyContent: "center", alignContent: "center" }}>
-        <img src={image} alt="" style={{ width: "30vh" }} />
+    <Grid className="container-login-body" container sx={{ flexDirection: { xs: "column", lg: "row" } }}>
+      <Grid sx={{ backgroundColor: "white", height: { lg: "55vh", xs: "15vh" }, width: { lg: "25vw", xs: "100vw" }, justifyContent: "center", alignContent: "center" }}>
+        <Box
+          component="img"
+          src={image}
+          sx={{ height: { xs: "15vh", lg: "30vh" } }}
+        />
       </Grid>
 
-      <Grid className="background-login">
+      <Grid className="background-login" sx={{ height: { lg: "55vh", xs: "85vh" }, width: { lg: "30vw", xs: "100vw" } }}>
         <form action="logUser" onSubmit={handleSubmit}>
-          { mutation.isPending ? <CircularProgress/> :  <Stack gap={2} sx={{ width: "40vh" }}>
+          {mutation.isPending ? <CircularProgress /> : <Stack gap={2} sx={{ width: "40vh" }}>
             <Typography variant="h3" fontSize={30} component="h2">Inicio de sesión</Typography>
 
             <Divider />
@@ -77,16 +79,17 @@ export const LoginPage: React.FC<{}> = () => {
               endAdornment: (
                 <InputAdornment position="start"> <AccountCircleIcon /> </InputAdornment>
               )
-            }} onChange={dataLogin} onClick={errorManage} helperText={ (isError) ? "Ha ocurrido un error, ingrese sus datos nuevamente." : "Ingrese su nombre de usuario." } required error={isError} variant="outlined" name="userName" label="Usuario" type="text" autoComplete="off"></TextField>
+            }} onChange={dataLogin} onClick={errorManage} helperText={(isError) ? "Ha ocurrido un error, ingrese sus datos nuevamente." : "Ingrese su nombre de usuario."} required error={isError} variant="outlined" name="userName" label="Usuario" type="text" autoComplete="off"></TextField>
 
             <FormControl required error={isError} variant="outlined">
               <InputLabel htmlFor="outlined-adornment-password">Contraseña</InputLabel>
+
               <OutlinedInput
                 id="outlined-adornment-password"
                 onChange={dataLogin}
                 name="password"
                 error={isError}
-                onClick={ errorManage }
+                onClick={errorManage}
                 required
                 type={showPassword ? 'text' : 'password'}
                 endAdornment={
@@ -105,18 +108,19 @@ export const LoginPage: React.FC<{}> = () => {
               />
 
               <FormHelperText>
-                { isError ? "Ha ocurrido un error, ingrese sus datos nuevamente." : "Ingrese su contraseña." }
+                {isError ? "Ha ocurrido un error, ingrese sus datos nuevamente." : "Ingrese su contraseña."}
               </FormHelperText>
             </FormControl>
+
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <Link component="button" onClick={() => navigate("/user/get_back_password/")} underline="hover">
+              <Link onClick={() => navigate("/user/get_back_password/")} underline="hover">
                 {'¿Has olvidado la contraseña?'}
               </Link>
             </Box>
 
             <Divider />
             <Button id="btn" variant="contained" type="submit">Iniciar sesión</Button>
-          </Stack> }
+          </Stack>}
         </form>
       </Grid>
     </Grid>

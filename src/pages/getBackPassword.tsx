@@ -83,11 +83,15 @@ export const GetBackPasswordPage: React.FC<{}> = () => {
 
     return (
         <Grid className="container-login-body" container>
-            <Grid sx={{ backgroundColor: "white", height: "60%", width: "40vh", justifyContent: "center", alignContent: "center" }}>
-                <img src={image} alt="" style={{ width: "30vh" }} />
+            <Grid sx={{ backgroundColor: "white", height: { lg: "55vh", xs: "15vh" }, width: { lg: "25vw", xs: "100vw" }, justifyContent: "center", alignContent: "center" }}>
+                <Box
+                    component="img"
+                    src={image}
+                    sx={{ height: { xs: "15vh", lg: "30vh" } }}
+                />
             </Grid>
 
-            <Grid className="background-login">
+            <Grid className="background-login" sx={{ height: { lg: "55vh", xs: "85vh" }, width: { lg: "30vw", xs: "100vw" } }}>
                 <form action="logUser" onSubmit={handleSubmit}>
 
                     <Stack gap={2} sx={{ width: "40vh", justifyItems: "center", alignItems: (mutation.isPending) ? "center" : "undefined" }}>
