@@ -83,7 +83,7 @@ export const LoginPage: React.FC<{}> = () => {
 
             <FormControl required error={isError} variant="outlined">
               <InputLabel htmlFor="outlined-adornment-password">Contraseña</InputLabel>
-
+              
               <OutlinedInput
                 id="outlined-adornment-password"
                 onChange={dataLogin}

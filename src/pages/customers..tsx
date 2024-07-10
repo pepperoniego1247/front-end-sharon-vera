@@ -160,10 +160,10 @@ export const CustomersPage: React.FC<{}> = () => {
             <SideBar title="CLIENTES"></SideBar>
 
             <Stack sx={{ height: "100vh", justifyItems: "center", alignItems: "center", justifyContent: "center", alignContent: "center" }}>
-                <Stack direction="row" sx={{ marginTop: "8vh" }} gap={4}>
-                    <Table headers={headers} data={customerId} dataRow={dataRowCustomer()} setData={setCustomerId} sx={{ width: "125vh", height: "85vh" }}></Table>
+                <Stack  sx={{ marginTop: { lg: "8vh", xs: (customerId.length > 0) ? "72vh" : "60vh" }, flexDirection: { lg: "row", xs: "column-reverse" }, justifyContent: { xs: "center" }, paddingBottom: { xs: "4vh", lg: "0vh" }, alignContent: { xs: "center" }, justifyItems: { xs: "center" }, alignItems: { xs: "center", lg: "normal" } }} gap={4}>
+                    <Table headers={headers} data={customerId} dataRow={dataRowCustomer()} setData={setCustomerId} sx={{ width: { lg: "68vw", xs: "90vw" }, height: { lg: "85vh", xs: "70vh" } }}></Table>
 
-                    <div className="data-crud-customer-form">
+                    <Box className="data-crud-customer-form" sx={{ minHeight: (customerId.length > 0) ? "73vh" : "60vh", width: { lg: "27vw", xs: "90vw" } }}>
                        { registerCustomer.isPending || updateCustomer.isPending ? <CircularProgress/> :  <div className="data-crud-customer-background">
                             <form onSubmit={handleSubmit}>
                                 <Stack gap={2} sx={{ width: "40vh" }}>
@@ -206,7 +206,7 @@ export const CustomersPage: React.FC<{}> = () => {
                                             <TextField onChange={dataCustomerChange} value={dataCustomer.phoneNumber} error={isError} onClick={changeIsError} variant="outlined" name="phoneNumber" label="Numero celular" type="text" autoComplete="off"></TextField>
 
                                             {(!isRegisterCustomer) ?
-                                                <FormDialog title="Anotaciones" icon={<EditNoteIcon />} sx={{ width: "70vh", justifyItems: "center", alignItems: "center", justifyContent: "center", alignContent: "center" }}>
+                                                <FormDialog title="Anotaciones" icon={<EditNoteIcon />} sx={{ width: { lg: "37.3vw", xs: "83vw" }, justifyItems: "center", alignItems: "center", justifyContent: "center", alignContent: "center" }}>
                                                     <Stack gap={4}>
                                                         <TextField
                                                             id="outlined-multiline-static"
@@ -216,7 +216,7 @@ export const CustomersPage: React.FC<{}> = () => {
                                                             value={dataCustomer.notation}
                                                             onChange={dataCustomerChange}
                                                             rows={20}
-                                                            sx={{ width: "63.5vh" }}
+                                                            sx={{ width: { lg: "34.2vw", xs: "70.5vw" } }}
                                                         />
 
                                                         <Button onClick={async () => {
@@ -239,7 +239,7 @@ export const CustomersPage: React.FC<{}> = () => {
                                 </Stack>
                             </form>
                         </div> }
-                    </div>
+                    </Box>
 
                 </Stack>
             </Stack>

@@ -144,7 +144,7 @@ export const SideBar: React.FC<SideBarProps> = ({ title }: SideBarProps) => {
             {title}
           </Typography>
 
-          <Typography sx={{ marginLeft: "13.5vh", fontWeight: 900, fontSize: "20px", flexGrow: 1, width: "60%" }}>
+          <Typography sx={{ marginLeft: "13.5vh", display: { xs: "none", lg: "block" }, fontWeight: 900, fontSize: "20px", flexGrow: 1, width: "60%" }}>
             SHARON VERA BEAUTY
           </Typography>
 

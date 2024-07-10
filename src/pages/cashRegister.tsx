@@ -527,7 +527,7 @@ export const CashRegisterPage: React.FC<{}> = () => {
     
                 <TabPanel value="1" sx={{ backgroundColor: "primary.main", height: { xs: "auto", md: "83.8vh" } }} >
                     <Stack gap={3} direction={{ xs: "column", md: "row" }} sx={{ justifyContent: "center", alignContent: "center" }}>
-                        <Table disableSelectionRow={true} active={false} setData={setReserveId} sx={{ height: { xs: "auto", md: "79vh" }, width: "100%" }} dataRow={dataRowReserve()} data={reserveId} headers={headersReserve}></Table>
+                        <Table disableSelectionRow={true} active={false} setData={setReserveId} sx={{ height: { xs: "auto", md: "79vh" }, width: "70vw" }} dataRow={dataRowReserve()} data={reserveId} headers={headersReserve}></Table>
                         <DisplayInformation isPending={registerSaleReserve.isPending} data={dataReserve} detail={dataReserveDetail}></DisplayInformation>
                     </Stack>
                 </TabPanel>
