@@ -326,14 +326,14 @@ export const Anamnesis: React.FC<{}> = () => {
     }
 
     return (
-        <Grid className="anamnesis-form" sx={{ paddingBottom: "20vh" }} >
+        <Grid className="anamnesis-form" sx={{ paddingBottom: "20vh", flexDirection: { xs: "column", lg: "row" } }} >
             <SideBar title="ANAMNESIS"></SideBar>
             <Grid sx={{ paddingTop: "5vh" }}>
-                <img src={Logo}></img>
+                <Box component="img" src={Logo} sx={{ width: { xs: "80vw", lg: "40vw" } }}></Box>
             </Grid>
             <ThemeProvider theme={theme}>
                 <Typography variant="h5" align="center" sx={{ fontWeight: 'bold' }}>HOJA DE ANAMNESIS</Typography>
-                <Typography sx={{ fontWeight: 'bold', textDecoration: 'underline', marginRight: 72 }} display="inline-block">Informacion Personal:</Typography>
+                <Typography sx={{ fontWeight: 'bold', textDecoration: 'underline', marginRight: { lg: 72 }, marginTop: { xs: "4vh", lg: "1vh" } }} display="inline-block">Informacion Personal:</Typography>
                 <Grid container spacing={2} alignItems="center" justifyContent="center" sx={{ marginTop: 0.1 }}>
                     <Grid item sx={{ display: 'flex', marginRight: 1 }}>
                         {enableButtonNew ? (<Button variant="contained" sx={{ backgroundColor: "grey" }} onClick={handleNew}>Nuevo</Button>) : (<Grid sx={{ "width": '9.5ch' }}></Grid>)}
@@ -342,14 +342,14 @@ export const Anamnesis: React.FC<{}> = () => {
                     <Grid item sx={{ display: 'flex', alignItems: 'center' }}>
                         <Typography sx={{ marginRight: 0.5 }} >Nombre:</Typography>
                         <TextField disabled={true} sx={{
-                            width: '50ch', "& .MuiInputBase-input.Mui-disabled": {
+                            width: { lg: '30vw', xs: "50vw" }, "& .MuiInputBase-input.Mui-disabled": {
                                 WebkitTextFillColor: "black"
                             }
                         }} value={anamnesis.customer.person.firstName + " " + anamnesis.customer.person.lastName} />
                     </Grid>
                     <Grid item sx={{ display: 'flex', alignItems: 'center' }}>
                         <Typography sx={{ marginRight: 0.5 }}>Dni:</Typography>
-                        <TextField value={dni} onChange={(e) => setDni(e.target.value)} />{/*****************GUARDAR EL VALOR DEL DNI**************/}
+                        <TextField sx={{ width: { xs: "60vw", lg: "15vw" } }} value={dni} onChange={(e) => setDni(e.target.value)} />{/*****************GUARDAR EL VALOR DEL DNI**************/}
                     </Grid>
                     {(!isImpriendo) ? <Grid item sx={{ display: 'flex' }}>
                         <Button variant="contained" sx={{ backgroundColor: "grey" }} onClick={handleSearch}>Buscar</Button>{/************BUSCAR*****************/}

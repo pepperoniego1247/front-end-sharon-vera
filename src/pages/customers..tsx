@@ -160,15 +160,15 @@ export const CustomersPage: React.FC<{}> = () => {
             <SideBar title="CLIENTES"></SideBar>
 
             <Stack sx={{ height: "100vh", justifyItems: "center", alignItems: "center", justifyContent: "center", alignContent: "center" }}>
-                <Stack  sx={{ marginTop: { lg: "8vh", xs: (customerId.length > 0) ? "72vh" : "60vh" }, flexDirection: { lg: "row", xs: "column-reverse" }, justifyContent: { xs: "center" }, paddingBottom: { xs: "4vh", lg: "0vh" }, alignContent: { xs: "center" }, justifyItems: { xs: "center" }, alignItems: { xs: "center", lg: "normal" } }} gap={4}>
+                <Stack  sx={{ marginTop: { lg: "8vh", xs: "70vh"}, flexDirection: { lg: "row", xs: "column-reverse" }, justifyContent: { xs: "center" }, paddingBottom: { xs: "4vh", lg: "0vh" }, alignContent: { xs: "center" }, justifyItems: { xs: "center" }, alignItems: { xs: "center", lg: "normal" } }} gap={4}>
                     <Table headers={headers} data={customerId} dataRow={dataRowCustomer()} setData={setCustomerId} sx={{ width: { lg: "68vw", xs: "90vw" }, height: { lg: "85vh", xs: "70vh" } }}></Table>
 
                     <Box className="data-crud-customer-form" sx={{ minHeight: (customerId.length > 0) ? "73vh" : "60vh", width: { lg: "27vw", xs: "90vw" } }}>
                        { registerCustomer.isPending || updateCustomer.isPending ? <CircularProgress/> :  <div className="data-crud-customer-background">
                             <form onSubmit={handleSubmit}>
-                                <Stack gap={2} sx={{ width: "40vh" }}>
+                                <Stack gap={2} sx={{ width: { lg: "20vw", xs: "70vw" } }}>
                                     <div>
-                                        <Stack direction="row" gap={15} alignItems="center">
+                                        <Stack direction="row" sx={{ gap: { xs: "20vw", lg: "7.1vw" } }} alignItems="center">
                                             <Typography variant="h4" component="h1">Cliente</Typography>
 
                                             {/* //!VOLVER ESTO UN COMPONENTE */}

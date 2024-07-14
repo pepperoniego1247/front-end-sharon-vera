@@ -359,9 +359,9 @@ export const EmployeeCrud: React.FC<{}> = () => {
     return (
         <Grid className="body-employee-crud" sx={{ padding: "2vh" }}>
             <SideBar title="EMPLEADOS"></SideBar>
-            <Stack direction="row" sx={{ marginTop: "8vh" }} gap={3}>
+            <Stack direction="row" sx={{ marginTop: "8vh", flexDirection: { xs: "column", lg: "row" }, paddingBottom: "3vh" }} gap={3}>
                 <Stack sx={{ justifyItems: "center", alignItems: "center" }} gap={3}>
-                    <div className="data-crud-form" >
+                    <Box className="data-crud-form" sx={{ height: { lg: "30vh", xs: "55vh" }, width: { lg: "64.5vw", xs: "90vw" } }} >
                         {registerEmployee.isPending || updateEmployee.isPending ? <CircularProgress /> : <div className="data-crud-background">
                             <form action="submit-data" onSubmit={handleSubmit}>
                                 <Stack gap={0.5} sx={{ justifyItems: "center", alignItems: "center" }}>
@@ -369,7 +369,7 @@ export const EmployeeCrud: React.FC<{}> = () => {
 
                                     <Divider className="divider" sx={{ marginTop: "10px", marginBottom: "10px" }} />
 
-                                    <Stack direction="row" gap={5}>
+                                    <Stack sx={{ flexDirection: { lg: "row", xs: "column" }, gap: { xs: "2.5vh", lg: "2.5vw" } }}>
                                         <TextField required onChange={dataEmployee} disabled={!isRegister} error={isError} onClick={changeIsError} value={employeeData.dni} variant="outlined" name="dni" label="Dni" type="text" autoComplete="off"></TextField>
                                         <TextField required onChange={dataEmployee} value={employeeData.phoneNumber} error={isError} onClick={changeIsError} variant="outlined" name="phoneNumber" label="Telefono" type="text" autoComplete="off"></TextField>
 
@@ -384,18 +384,18 @@ export const EmployeeCrud: React.FC<{}> = () => {
 
                                     <Divider className="divider" sx={{ marginTop: "10px", marginBottom: "10px" }} />
 
-                                    {(isRegister) ? <Button sx={{ width: "60vh" }} variant="contained" onClick={() => setIsRegister(true)} type="submit">Registrar</Button> : <Button sx={{ width: "60vh" }} variant="contained" onClick={() => setIsRegister(false)} type="submit">Editar</Button>}
+                                    {(isRegister) ? <Button sx={{ width: { xs: "70vw", lg: "30vw" } }} variant="contained" onClick={() => setIsRegister(true)} type="submit">Registrar</Button> : <Button sx={{ width: { xs: "70vw", lg: "30vw" }  }} variant="contained" onClick={() => setIsRegister(false)} type="submit">Editar</Button>}
                                 </Stack>
                             </form>
                         </div>}
 
-                    </div>
+                    </Box>
 
-                    <Table setData={setEmployeeId} headers={headers} dataRow={dataRow()} sx={{ height: "55vh", width: "120vh" }} data={employeeId}></Table>
+                    <Table setData={setEmployeeId} headers={headers} dataRow={dataRow()} sx={{ height: { lg: "55vh", xs: "60vh" }, width: { xs: "90vw", lg: "64.5vw" } }} data={employeeId}></Table>
                 </Stack>
 
-                <Stack gap={3}>
-                    <div className="data-crud-role-form">
+                <Stack sx={{ justifyItems: "center", alignItems: "center" }} gap={3}>
+                    <Box className="data-crud-role-form" sx={{ height: { lg: "30vh" }, width: { xs: "90vw", lg: "31.6vw" } }}>
                         { registerRole.isPending || updateRole.isPending ? <CircularProgress/> : <div className="data-crud-role-background">
                             <form onSubmit={handleSubmitRole}>
                                 <Stack gap={0.5} sx={{ width: "30vh" }}>
@@ -414,9 +414,9 @@ export const EmployeeCrud: React.FC<{}> = () => {
                                 </Stack>
                             </form>
                         </div>}
-                    </div>
+                    </Box>
 
-                    <Table headers={headersRole} data={roleId} dataRow={getDataRoleRows()} setData={setRoleId} sx={{ height: "55vh", width: "59vh" }}></Table>
+                    <Table headers={headersRole} data={roleId} dataRow={getDataRoleRows()} setData={setRoleId} sx={{ height: { lg: "55vh", xs: "60vh" }, width: { lg: "31.6vw", xs: "90vw" } }}></Table>
                 </Stack>
 
             </Stack>
