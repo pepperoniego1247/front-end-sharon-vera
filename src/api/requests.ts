@@ -30,8 +30,10 @@ export const RegisterData = (name: string, url: string, body: any) => {
                 body: JSON.stringify(body)
             });
 
-            if (!response.ok) throw Error(`http error en ${ name }`);
-            return response.json();
+            const data = await response.json();
+
+            if (!response.ok) throw new Error((!data["message"]["errors"]) ? data["message"] : data["message"]["errors"][0]["msg"]);
+            return data;
         }
     });
 }
@@ -48,8 +50,10 @@ export const UpdateData = (name: string, url: string, body: any) => {
                 body: JSON.stringify(body)
             });
 
-            if (!response.ok) throw Error(`http error en ${ name }`);
-            return response.json();
+            const data = await response.json();
+
+            if (!response.ok) throw new Error((!data["message"]["errors"]) ? data["message"] : data["message"]["errors"][0]["msg"]);
+            return data;
         }
     });
 }
@@ -65,8 +69,10 @@ export const DeleteData = (name: string, url: string) => {
                 }
             });
 
-            if (!response.ok) throw new Error("HTTP ERROR" + name);
-            return response.json();
+            const data = await response.json();
+
+            if (!response.ok) throw new Error((!data["message"]["errors"]) ? data["message"] : data["message"]["errors"][0]["msg"]);
+            return data;
         }
     });
 }

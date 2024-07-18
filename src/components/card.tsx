@@ -13,9 +13,9 @@ export const MediaCard: React.FC<MediaCardProps> = ({ data, setData, list, setCo
   const inStock = (data["cantidad"] > 0) ? true : false;
 
   return (
-    <Card sx={{ width: { xs: "90vw", sm: "60vw", md: "40vh" }, position: "relative" }}>
+    <Card sx={{ width: { xs: "90vw", lg: "22.24vw" }, position: "relative" }}>
       <CardMedia
-        sx={{ height: { xs: 150, sm: 200 } }}
+        sx={{ height: { xs: 200, lg: 200 }, objectFit: "cover" }}
         image={data["image"]}
         title={data["name"]}
       />

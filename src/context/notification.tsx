@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { ContextProps } from "../helpers/types";
 import { Notification } from "../components";
 import { AlertColor } from "@mui/material";
@@ -13,14 +13,14 @@ export const NotificationProvider: React.FC<{ children: JSX.Element }> = ({ chil
         setOpen(false);
     }
 
-    const getError = () => {
-        setSeverity("error");
+    const notificate = (msg: string, severity: AlertColor) => {
+        setSeverity(severity);
         setOpen(true);
-        setMessage(message);
+        setMessage(msg);
     }
 
     const value = {
-        getError
+        notificate
     }
 
     return (
@@ -29,4 +29,10 @@ export const NotificationProvider: React.FC<{ children: JSX.Element }> = ({ chil
             {children}
         </NotificationContext.Provider>
     );
+}
+
+export const useNotification = () => {
+    const context = useContext(NotificationContext);
+    if (!context) throw new Error("Error en el contexto");
+    return context;
 }

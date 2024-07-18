@@ -90,7 +90,7 @@ export type filterDataType = {
 }
 
 export type ContextProps = {
-    getError: (message: string) => void;
+    notificate: (message: string, severity: AlertColor) => void;
 }
 
 export type RegisterType = {

@@ -27,11 +27,13 @@ import SellIcon from '@mui/icons-material/Sell';
 import { useParams } from "react-router-dom";
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { LoadData, RegisterData, UpdateData } from "../api/requests";
+import { useNotification } from "../context/notification";
 
 export const EmployeeCrud: React.FC<{}> = () => {
     const { id } = useParams();
 
     const navigator = useNavigate();
+    const { notificate } = useNotification();
 
     useEffect(() => {
         if (!localStorage.getItem("expirationDate") || new Date(localStorage.getItem("expirationDate")!) < new Date())
@@ -298,7 +300,8 @@ export const EmployeeCrud: React.FC<{}> = () => {
             loadDataRole.refetch();
             setIsRegister(true);
             setEmployeeId([]);
-        } catch (error) {
+        } catch (error: any) {
+            notificate(error.toString(), "error");
             console.log(error);
         }
     }
@@ -311,7 +314,8 @@ export const EmployeeCrud: React.FC<{}> = () => {
             loadDataRole.refetch();
             roleData.refetch();
             setRoleId([]);
-        } catch (error) {
+        } catch (error: any) {
+            notificate(error.toString(), "error");
             console.log(error);
         }
     }

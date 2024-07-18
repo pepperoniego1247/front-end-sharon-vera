@@ -20,7 +20,7 @@ export const DisplayInformation: React.FC<DisplayInformationProps> = ({ data, de
     const upperCaseFirstLetter = (word: string) => { return word[0].toUpperCase() + word.slice(1) }
 
     return (
-        <Card sx={{ width: "50vh", padding: "1vh", height: "79vh" }}>
+        <Card sx={{ width: { lg: "30vw", xs: "90vw" }, padding: "1vh", height: "79vh" }}>
             <Typography gutterBottom variant="h4" component="div">
                 Informacion de reserva
             </Typography>

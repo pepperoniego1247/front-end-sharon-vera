@@ -10,9 +10,11 @@ import { CustomerDataType, RoleData } from "../helpers/types";
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import { LoadData, RegisterData, UpdateData } from "../api/requests";
 import { useNavigate } from "react-router-dom";
+import { useNotification } from "../context/notification";
 
 export const CustomersPage: React.FC<{}> = () => {
     const navigator = useNavigate();
+    const { notificate } = useNotification();
 
     useEffect(() => {
         if (!localStorage.getItem("expirationDate") || new Date(localStorage.getItem("expirationDate")!) < new Date())
@@ -150,7 +152,8 @@ export const CustomersPage: React.FC<{}> = () => {
             });
             loadDataCustomer.refetch();
             setCustomerId([]);
-        } catch (error) {
+        } catch (error: any) {
+            notificate(error.toString(), "error");
             console.log(error);
         }
     }
@@ -160,10 +163,10 @@ export const CustomersPage: React.FC<{}> = () => {
             <SideBar title="CLIENTES"></SideBar>
 
             <Stack sx={{ height: "100vh", justifyItems: "center", alignItems: "center", justifyContent: "center", alignContent: "center" }}>
-                <Stack  sx={{ marginTop: { lg: "8vh", xs: "70vh"}, flexDirection: { lg: "row", xs: "column-reverse" }, justifyContent: { xs: "center" }, paddingBottom: { xs: "4vh", lg: "0vh" }, alignContent: { xs: "center" }, justifyItems: { xs: "center" }, alignItems: { xs: "center", lg: "normal" } }} gap={4}>
+                <Stack  sx={{ flexDirection: { lg: "row", xs: "column-reverse" }, justifyContent: { xs: "center" }, paddingTop: { xs: "75vh", lg: "8vh" }, paddingBottom: { xs: "4vh", lg: "0vh" }, alignContent: { xs: "center" }, justifyItems: { xs: "center" }, alignItems: { xs: "center", lg: "normal" } }} gap={4}>
                     <Table headers={headers} data={customerId} dataRow={dataRowCustomer()} setData={setCustomerId} sx={{ width: { lg: "68vw", xs: "90vw" }, height: { lg: "85vh", xs: "70vh" } }}></Table>
 
-                    <Box className="data-crud-customer-form" sx={{ minHeight: (customerId.length > 0) ? "73vh" : "60vh", width: { lg: "27vw", xs: "90vw" } }}>
+                    <Box className="data-crud-customer-form" sx={{ padding: "3vh", width: { lg: "27vw", xs: "90vw" }, minHeight: { xs: "75vh" } }}>
                        { registerCustomer.isPending || updateCustomer.isPending ? <CircularProgress/> :  <div className="data-crud-customer-background">
                             <form onSubmit={handleSubmit}>
                                 <Stack gap={2} sx={{ width: { lg: "20vw", xs: "70vw" } }}>

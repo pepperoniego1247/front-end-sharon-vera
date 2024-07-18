@@ -10,7 +10,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import SearchIcon from '@mui/icons-material/Search';
 import TabPanel from '@mui/lab/TabPanel';
-import { useNavigate } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import { SelectTextField } from "../components/select";
 import "../styles/cashRegisterPage.css";
 import { styled } from '@mui/material/styles';
@@ -30,6 +30,7 @@ import { MediaCard } from "../components/card";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import { CancelReserveType, ProductDataType, ReserveDataType, SaleProductType, TypeOfDocumentProps, filterDataType } from "../helpers/types";
 import { LoadData, RegisterData } from "../api/requests";
+import { useNotification } from "../context/notification";
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -42,6 +43,7 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 
 export const CashRegisterPage: React.FC<{}> = () => {
     const navigator = useNavigate();
+    const { notificate } = useNotification();
 
     useEffect(() => {
         if (!localStorage.getItem("expirationDate") || new Date(localStorage.getItem("expirationDate")!) < new Date())
@@ -112,7 +114,8 @@ export const CashRegisterPage: React.FC<{}> = () => {
                             try {
                                 const data = await registerSaleReserve.mutateAsync();
                                 window.open(data["pdfUrl"]);
-                            } catch (error) {
+                            } catch (error: any) {
+                                notificate(error.toString(), "error");
                                 console.log(error)
                             }
                         }}
@@ -303,7 +306,8 @@ export const CashRegisterPage: React.FC<{}> = () => {
                 customerAddress: ""
             });
             window.open(data["pdfUrl"]);
-        } catch (error) {
+        } catch (error: any) {
+            notificate(error.toString(), "error");
             console.log(error);
         }
     }
@@ -444,7 +448,7 @@ export const CashRegisterPage: React.FC<{}> = () => {
             <SideBar title="CAJA"></SideBar>
     
             <Drawer sx={{ justifyItems: "center", alignItems: "center" }} open={isOpenDrawer} anchor="right" onClose={() => setIsOpenDrawer(false)}>
-                <Stack gap={1} sx={{ margin: "auto", alignItems: "center", width: { xs: "90vw", sm: "80vw", md: "65vh" } }}>
+                <Stack gap={1} sx={{ margin: "auto", alignItems: "center", width: { xs: "80vw", lg: "35vw" }, padding: "10px" }}>
                     {registerSaleProduct.isPending ? <CircularProgress /> : <>
                         <SelectTextField setData={setTypeOfDocument} data={typeOfDocument} listData={dataRowTypeOfDocument()} label="Tipo de documento" name="type"></SelectTextField>
     
@@ -497,8 +501,8 @@ export const CashRegisterPage: React.FC<{}> = () => {
     
                         <Divider sx={{ width: "80%" }} />
     
-                        <form action="" onSubmit={handleSubmitShoppingCar}>
-                            <Stack direction={{ xs: "column", sm: "row" }} sx={{ marginTop: "4vh", width: "100%" }} gap={2}>
+                        <Box component="form" onSubmit={handleSubmitShoppingCar} sx={{ width: { xs: 207, lg: "30vw"} }}>
+                            <Stack direction={{ xs: "column", lg: "row" }} sx={{ marginTop: "4vh", width: "100%" }} gap={2}>
                                 <SelectTextField setData={setDataProductSale} required={false} data={dataProductSale} label="Cliente" listData={dataRowCustomer()} name="customer"></SelectTextField>
                                 <TextField autoComplete="off" size="small" label="Direccion" name="customerAddress" variant="outlined"></TextField>
                             </Stack>
@@ -508,34 +512,34 @@ export const CashRegisterPage: React.FC<{}> = () => {
                                 <SelectTextField setData={setDataProductSale} data={dataProductSale} label="Metodo de pago" listData={dataRowPayment()} name="paymentMethod"></SelectTextField>
                             </Stack>
     
-                            <Stack direction="row" gap={20} sx={{ marginTop: "4vh" }}>
+                            <Stack direction="row" sx={{ marginTop: "4vh", gap: { xs: "35px", lg: "14.5vw" } }}>
                                 <Typography variant="h6">Total: S/. {total}</Typography>
                                 <Button variant="contained" type="submit" sx={{ color: "white" }}>Realizar compra</Button>
                             </Stack>
-                        </form>
+                        </Box> 
                     </>}
                 </Stack>
             </Drawer>
     
             <TabContext value={value}>
-                <Box sx={{ borderBottom: 1, borderColor: 'divider', marginTop: { md: "10vh", xs: "15vh" } }}>
-                    <TabList onChange={handleChange} sx={{ backgroundColor: "secondary.main", width: { xs: "90vw", sm: "80vw", md: "50vh" }, borderTopRightRadius: "5px" }}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider', marginTop: { lg: "10vh", xs: "80px" } }}>
+                    <TabList onChange={handleChange} sx={{ backgroundColor: "secondary.main", width: { xs: "95vw", lg: "27vw"}, borderTopRightRadius: "5px" }}>
                         <Tab label="Cancelacion de reserva" value="1" />
                         <Tab label="Venta de productos" value="2" />
                     </TabList>
                 </Box>
     
                 <TabPanel value="1" sx={{ backgroundColor: "primary.main", height: { xs: "auto", md: "83.8vh" } }} >
-                    <Stack gap={3} direction={{ xs: "column", md: "row" }} sx={{ justifyContent: "center", alignContent: "center" }}>
-                        <Table disableSelectionRow={true} active={false} setData={setReserveId} sx={{ height: { xs: "auto", md: "79vh" }, width: "70vw" }} dataRow={dataRowReserve()} data={reserveId} headers={headersReserve}></Table>
+                    <Stack gap={3} sx={{ justifyContent: "center", flexDirection: { xs: "column-reverse", lg: "row" }, alignContent: "center", justifyItems: "center", alignItems: "center" }}>
+                        <Table disableSelectionRow={true} active={false} setData={setReserveId} sx={{ height: { xs: "70vh", lg: "79vh" }, width: { lg: "70vw", xs: "90vw" }}} dataRow={dataRowReserve()} data={reserveId} headers={headersReserve}></Table>
                         <DisplayInformation isPending={registerSaleReserve.isPending} data={dataReserve} detail={dataReserveDetail}></DisplayInformation>
                     </Stack>
                 </TabPanel>
     
                 <TabPanel value="2" sx={{ backgroundColor: "primary.main", height: "100" }} >
                     <Stack>
-                        <Box sx={{ padding: "3vh", backgroundColor: "secondary.main", display: "flex", flexDirection: { xs: "column", sm: "row" }, height: "100%", alignItems: "center", justifyItems: "center", borderRadius: "5px" }}>
-                            <Stack direction={{ xs: "column", sm: "row" }} gap={{ xs: 1, md: 4 }}>
+                        <Box sx={{ padding: "3vh", backgroundColor: "secondary.main", display: "flex", flexDirection: { xs: "column", lg: "row" }, height: "100%", alignItems: "center", justifyItems: "center", borderRadius: "5px" }}>
+                            <Stack sx={{ flexDirection: { xs: "column", lg: "row" }, gap: { xs: 2, lg: 5 } }}>
                                 <TextField onChange={(e: ChangeEvent<HTMLInputElement>) => {
                                     setFilterData({ ...filterData, name: e.target.value });
                                 }} value={filterData["name"]} label="Buscar" size="small" variant="outlined" autoComplete="off" InputProps={{
@@ -544,11 +548,11 @@ export const CashRegisterPage: React.FC<{}> = () => {
                                     )
                                 }}></TextField>
     
-                                <Box sx={{ Width: 200 }}>
+                                <Box >
                                     <FormControl>
                                         <InputLabel size="small" id="demo-simple-select-label">Categoria</InputLabel>
                                         <Select
-                                            sx={{ width: 200 }}
+                                            sx={{ width: { lg: "13vw", xs: "70vw" } }}
                                             size="small"
                                             labelId="demo-simple-select-label"
                                             id="demo-simple-select"
@@ -560,21 +564,22 @@ export const CashRegisterPage: React.FC<{}> = () => {
                                         </Select>
                                     </FormControl>
                                 </Box>
-    
-                                <FormControlLabel control={<Checkbox value={filterData.inStock} onChange={(e: ChangeEvent<HTMLInputElement>, checked: boolean) => {
-                                    setFilterData({ ...filterData, inStock: checked });
-                                }} />} label="En stock" />
                                 
-                                <IconButton onClick={() => setIsOpenDrawer(true)} aria-label="cart" sx={{ position: "absolute", right: { xs: "10vh", sm: "10%", md: "6vh" } }}>
-                                    <StyledBadge badgeContent={counter} color="secondary">
-                                        <ShoppingCartIcon />
-                                    </StyledBadge>
-                                </IconButton>
+                                <Stack sx={{ gap: { xs: "35vw", lg: "50vw" } }} direction="row">
+                                    <FormControlLabel sx={{ width: { lg: "7vw", xs: "25vw" } }} control={<Checkbox value={filterData.inStock} onChange={(e: ChangeEvent<HTMLInputElement>, checked: boolean) => {
+                                        setFilterData({ ...filterData, inStock: checked });
+                                    }} />} label="En stock" />
+
+                                    <IconButton onClick={() => setIsOpenDrawer(true)} aria-label="cart">
+                                        <StyledBadge badgeContent={counter} color="secondary">
+                                            <ShoppingCartIcon />
+                                        </StyledBadge>
+                                    </IconButton>
+                                </Stack>
                             </Stack>
-    
                         </Box>
-    
-                        <Grid alignContent="center" container gap={4} sx={{ paddingLeft: "3vh", marginBottom: "5vh", marginTop: "3vh", height: "100" }}>
+                        
+                        <Grid container gap={4} sx={{ marginBottom: "5vh", marginTop: "3vh" }}>
                             {tempListProduct.filter((product: ProductDataType) => product["name"].toLocaleLowerCase().includes(filterData["name"].toLocaleLowerCase()) && product["category"].includes(filterData["category"]) && (!filterData["inStock"] || product["cantidad"] > 0)).map((product: any) => (
                                 <MediaCard counter={counter} setCounter={setCounter} data={product} setListProduct={setListProduct} listProduct={listProduct} setData={setListShoppingCar} list={listShoppingCar}></MediaCard>
                             ))}
