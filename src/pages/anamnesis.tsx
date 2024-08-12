@@ -13,6 +13,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/es';
 import Logo from "../assets/sharonVera-Logo.png";
 import { AnamnesisDataType } from "../helpers/types";
+import { IsNotAllowed } from "../helpers/urls";
 
 const theme = createTheme({
     palette: {
@@ -30,10 +31,12 @@ const theme = createTheme({
 export const Anamnesis: React.FC<{}> = () => {
     const navigator = useNavigate();
 
-    useEffect(() => {
-        if (!localStorage.getItem("expirationDate") || new Date(localStorage.getItem("expirationDate")!) < new Date())
-            navigator("/");
-    }, []);
+    // useEffect(() => {
+    //     if (!localStorage.getItem("expirationDate") || new Date(localStorage.getItem("expirationDate")!) < new Date())
+    //         navigator("/");
+    // }, []);
+
+    IsNotAllowed();
 
     const headers: any = [
         { field: "dni", type: "string", width: 140 },

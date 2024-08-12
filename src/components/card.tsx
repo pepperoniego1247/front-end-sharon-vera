@@ -15,7 +15,7 @@ export const MediaCard: React.FC<MediaCardProps> = ({ data, setData, list, setCo
   return (
     <Card sx={{ width: { xs: "90vw", lg: "22.24vw" }, position: "relative" }}>
       <CardMedia
-        sx={{ height: { xs: 200, lg: 200 }, objectFit: "cover" }}
+        sx={{ height: { xs: 200, lg: 200 }, objectFit: "fill" }}
         image={data["image"]}
         title={data["name"]}
       />

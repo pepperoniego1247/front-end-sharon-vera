@@ -107,7 +107,8 @@ export type NavBarProps = {
 export type UserData = {
     userName: string,
     password: string,
-    dni: string
+    dni: string,
+    type: string
 }
 
 export type SideBarProps = {
@@ -254,11 +255,11 @@ export type ProviderData ={
 
 export type AnamnesisDataType = {
     id: number,
-    birthDate: string;
-    address: string;
-    city: string;
-    email: string;
-    other: string;
+    birthDate: string,
+    address: string,
+    city: string,
+    email: string
+    other: string,
     provenencia: string,
     queloide: boolean,
     lentesDeContacto: boolean,

@@ -34,6 +34,7 @@ import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import { LoadData } from '../api/requests';
 import ListAltIcon from '@mui/icons-material/ListAlt';
+import { getUrls } from '../helpers/urls';
 
 const drawerWidth = 240;
 
@@ -70,15 +71,16 @@ export const SideBar: React.FC<SideBarProps> = ({ title }: SideBarProps) => {
   const navigate = useNavigate();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const subtitles: string[] = ["Menu", "Caja registradora", "Clientes", "Anamnesis", "Empleados", "Reservas", "Servicios", "Productos", "Usuarios del sistema", "Proveedores", "Ordenes de entrada", "DashBoard"];
-  const urls: string[] = [`/user/menu/${localStorage.getItem("id")}`, `/user/caja_registradora/${localStorage.getItem("id")}`, `/user/mantenedor_clientes/${localStorage.getItem("id")}`, `/user/customer/anamnesis_clientes/${localStorage.getItem("id")}`, `/user/mantenedor_empleados/${localStorage.getItem("id")}`, `/user/reservas_core/${localStorage.getItem("id")}`, `/user/mantenedor_servicios/${localStorage.getItem("id")}`, `/user/mantenedor_productos/${localStorage.getItem("id")}`, `/user/mantenedor_usuarios/${localStorage.getItem("id")}`, `/user/mantenedor_proveedores/${localStorage.getItem("id")}`, `/user/orden_entrada_core/${localStorage.getItem("id")}`, `/user/dash_board/${localStorage.getItem("id")}`];
-  const icons: JSX.Element[] = [<MenuBookIcon fontSize='large' />, <AttachMoneyIcon fontSize='large' />, <PersonIcon fontSize='large' />, <ArticleIcon fontSize='large' />, <GroupsIcon fontSize='large' />, <FactCheckIcon fontSize='large' />, <HomeRepairServiceIcon fontSize='large' />, <CategoryIcon fontSize='large' />, <SupervisedUserCircleIcon fontSize='large' />, <LocalShippingIcon fontSize='large'/>, <ListAltIcon fontSize='large' />, <DashboardIcon fontSize='large' />];
+  const links: any[][] = getUrls(localStorage.getItem("type")!);
+  const subtitles: string[] = links[0];
+  const urls: string[] = links[1];
+  const icons: JSX.Element[] = links[2];
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const settings = ["Perfil", 'Cerrar sesion'];
-  const urlSettings = [`/user/account_menu/${localStorage.getItem("id")}`, `/user/loggin_out/${localStorage.getItem("id")}`];
+  const urlSettings = [`/user/account_menu/${localStorage.getItem("type")}`, `/user/loggin_out/${localStorage.getItem("type")}`];
 
-  // const loadDataUser = LoadData("loadDataUser", `http://localhost:3001/user/get_by_id/${localStorage.getItem("id")}`);
+  // const loadDataUser = LoadData("loadDataUser", `http://localhost:3001/user/get_by_id/${localStorage.getItem("type")}`);
 
   const loadDataUser = useQuery({
     queryKey: ["loadDataUser"],

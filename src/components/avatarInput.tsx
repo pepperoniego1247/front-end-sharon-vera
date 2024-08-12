@@ -1,5 +1,5 @@
 import React, { ChangeEventHandler, useState, ChangeEvent } from 'react';
-import { Avatar, IconButton } from '@mui/material';
+import { Avatar, IconButton, Box } from '@mui/material';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { AvatarUploaderProps } from '../helpers/types';
 
@@ -19,9 +19,10 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({ data, setData, l
 
   return (
     <div style={{ position: 'relative', display: 'inline-block', marginBottom: "-6vh" }}>
-      <input
+      <Box
+        component="input"
         accept="image/*"
-        style={{ display: 'none', height: "25vh", width: "25vh" }}
+        sx={{ display: 'none', height: { lg: "25vh", xs: "15vh" }, width: { xs: "15vh", lg: "25vh" } }}
         id="icon-button-file"
         
         type="file"
@@ -31,13 +32,12 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({ data, setData, l
         <IconButton
           color="primary"
           aria-label="upload picture"
-          style={{ height: "25vh", width: "25vh" }}
+          sx={{ height: { lg: "25vh", xs: "15vh" }, width: { xs: "15vh", lg: "25vh" } }}
           component="span"
         >
           <Avatar
-            sx={{ border: "1px solid black" }}
+            sx={{ border: "1px solid black", height: { lg: "25vh", xs: "15vh" }, width: { xs: "15vh", lg: "25vh" } }}
             src={data["avatar"] as string}
-            style={{ height: "25vh", width: "25vh" }}
           >
             {!data["avatar"] && <PhotoCamera />}
           </Avatar>

@@ -6,14 +6,17 @@ import { Gauge } from '@mui/x-charts/Gauge';
 import { useNavigate } from "react-router-dom";
 import { LoadData } from "../api/requests";
 import { useEffect } from "react";
+import { IsNotAllowed } from "../helpers/urls";
 
 export const DashBoardPage: React.FC<{}> = () => {
     const navigator = useNavigate();
 
-    useEffect(() => {
-        if (!localStorage.getItem("expirationDate") || new Date(localStorage.getItem("expirationDate")!) < new Date())
-            navigator("/");
-    }, []);
+    // useEffect(() => {
+    //     if (!localStorage.getItem("expirationDate") || new Date(localStorage.getItem("expirationDate")!) < new Date())
+    //         navigator("/");
+    // }, []);
+
+    IsNotAllowed(["Moderador", "Usuario"]);
 
     const loadDataIngresos = LoadData("loadDataIngresos", "https://backend-sharon-3.onrender.com/dash_board_ingresos_totales_netos/");
     const loadDataVentaPorSemana = LoadData("loadDataVentaPorSemana", "https://backend-sharon-3.onrender.com/dash_board_venta_por_semana/");
@@ -74,7 +77,7 @@ export const DashBoardPage: React.FC<{}> = () => {
             <SideBar title="DASHBOARD"></SideBar>
 
             <Stack sx={{ marginTop: "13vh" }} gap={2}>
-                <Stack gap={3} direction="row" sx={{ justifyContent: "center", alignContent: "center", alignItems: "center", justifyItems: "center", display: "flex" }}>
+                <Stack gap={3} direction="row" sx={{ justifyContent: "center", alignContent: "center", alignItems: "center", justifyItems: "center", display: "flex", flexDirection: { xs: "column", lg: "row" } }}>
                     <Stack gap={1}>
                         <CardDashBoard title="GANANCIAS TOTALES" number={loadDataIngresos.data ? loadDataIngresos["data"]["ingresosTotal"] : "Loading..."}></CardDashBoard>
                         <CardDashBoard title="GANANCIAS NETAS" number={loadDataIngresos.data ? loadDataIngresos["data"]["ingresosNeto"] : "Loading..."}></CardDashBoard>
@@ -108,7 +111,7 @@ export const DashBoardPage: React.FC<{}> = () => {
                 </Stack>
 
 
-                <Stack gap={3} direction="row" sx={{ justifyContent: "center", alignContent: "center", alignItems: "center", justifyItems: "center", display: "flex" }}>
+                <Stack gap={3} direction="row" sx={{ justifyContent: "center", alignContent: "center", alignItems: "center", justifyItems: "center", display: "flex", flexDirection: { xs: "column", lg: "row" } }}>
                     <Stack sx={{ backgroundColor: "secondary.main", justifyItems: "center", alignItems: "center", alignContent: "center", justifyContent: "center", height: "40vh", borderRadius: "5px" }}>
                         <Typography sx={{ marginTop: "2vh" }} variant="h4">Total reservas por dia</Typography>
                         <BarChart
@@ -141,7 +144,7 @@ export const DashBoardPage: React.FC<{}> = () => {
                     </Stack>
                 </Stack>
 
-                <Stack gap={3} direction="row" sx={{ marginBottom: "5vh", justifyContent: "center", alignContent: "center", alignItems: "center", justifyItems: "center", display: "flex" }}>
+                <Stack gap={3} direction="row" sx={{ marginBottom: "5vh", justifyContent: "center", alignContent: "center", alignItems: "center", justifyItems: "center", display: "flex", flexDirection: { xs: "column", lg: "row" } }}>
                     <Box sx={{ backgroundColor: "secondary.main", justifyItems: "center", alignItems: "center", alignContent: "center", justifyContent: "center", height: "52vh", borderRadius: "5px" }}>
                         <BarChart
                             dataset={dataRowProductosMasVendidos("json")}
@@ -157,8 +160,6 @@ export const DashBoardPage: React.FC<{}> = () => {
                     </Box>
 
                     <Stack gap={1}>
-                        {/* POLLITO CON PAPAS FANTASTIC */}
-
                         <Stack direction="row" gap={3} sx={{ height: "52vh", borderRadius: "5px", width: "50vh", backgroundColor: "secondary.main", justifyContent: "center", padding: "4vh", alignContent: "center", alignItems: "center", display: "flex" }}>
                             <Avatar sx={{ height: "9vh", width: "9vh", fontSize: 30, backgroundColor: "red" }}>R</Avatar>
                             <Stack gap={1} sx={{ width: "30vh" }}>
@@ -166,7 +167,6 @@ export const DashBoardPage: React.FC<{}> = () => {
                                 <Typography variant="h3">{ loadDataReservasPorMes.data ? loadDataReservasPorMes["data"]["totalReserves"] : "Loading..." }</Typography>
                             </Stack>
                         </Stack>
-
                     </Stack>
                 </Stack>
             </Stack>

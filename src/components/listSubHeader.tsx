@@ -43,9 +43,9 @@ export const SubHeaderList: React.FC<SubHeaderListProps> = ({ reserveDetail }: S
             {(services.length > 0) ? <li key={"Servicio"}>
                 <ul>
                     <ListSubheader>Servicio</ListSubheader>
-                    {services.map(({ name, price }, index) => (
-                        <ListItem sx={{ textAlign: "center" }} key={`objeto-Servicio-${name}`}>
-                            <ListItemText primary={`${index + 1}. ${name}`} secondary={` S/. ${price}`} />
+                    {services.map(({ description, price }, index) => (
+                        <ListItem sx={{ textAlign: "center" }} key={`objeto-Servicio-${description}`}>
+                            <ListItemText primary={`${index + 1}. ${description}`} secondary={` S/. ${price}`} />
                         </ListItem>
                     ))}
                 </ul>

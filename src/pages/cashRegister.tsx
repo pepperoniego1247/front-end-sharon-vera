@@ -31,6 +31,7 @@ import { GridActionsCellItem } from "@mui/x-data-grid";
 import { CancelReserveType, ProductDataType, ReserveDataType, SaleProductType, TypeOfDocumentProps, filterDataType } from "../helpers/types";
 import { LoadData, RegisterData } from "../api/requests";
 import { useNotification } from "../context/notification";
+import { IsNotAllowed } from "../helpers/urls";
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -45,10 +46,12 @@ export const CashRegisterPage: React.FC<{}> = () => {
     const navigator = useNavigate();
     const { notificate } = useNotification();
 
-    useEffect(() => {
-        if (!localStorage.getItem("expirationDate") || new Date(localStorage.getItem("expirationDate")!) < new Date())
-            navigator("/");
-    }, []);
+    // useEffect(() => {
+    //     if (!localStorage.getItem("expirationDate") || new Date(localStorage.getItem("expirationDate")!) < new Date())
+    //         navigator("/");
+    // }, []);
+
+    IsNotAllowed();
 
     const headersReserve: any = [
         { field: "creationDate", type: "date", width: 100, headerName: "Fecha de creacion" },
