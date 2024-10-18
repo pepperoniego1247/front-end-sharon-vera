@@ -1,21 +1,19 @@
 {
   "files": {
     "main.css": "/static/css/main.fc79fff7.css",
-    "main.js": "/static/js/main.438857ba.js",
+    "main.js": "/static/js/main.78306b20.js",
     "static/js/787.498e3191.chunk.js": "/static/js/787.498e3191.chunk.js",
-    "static/media/bg-image-presentation-2.jpg": "/static/media/bg-image-presentation-2.587aa0f058a1ce898f7b.jpg",
     "static/media/loginOutimage.png": "/static/media/loginOutimage.4f651a2c06ecc807fd8d.png",
     "static/media/404_not_found.png": "/static/media/404_not_found.ed700d7dc915b577d832.png",
-    "static/media/sharonVera-Logo.png": "/static/media/sharonVera-Logo.5c962b79f8ace054c805.png",
     "static/media/empty-list-image.png": "/static/media/empty-list-image.270a0d39fc3d405d1507.png",
     "static/media/aaa.png": "/static/media/aaa.88dadc81665df8addb23.png",
     "index.html": "/index.html",
     "main.fc79fff7.css.map": "/static/css/main.fc79fff7.css.map",
-    "main.438857ba.js.map": "/static/js/main.438857ba.js.map",
+    "main.78306b20.js.map": "/static/js/main.78306b20.js.map",
     "787.498e3191.chunk.js.map": "/static/js/787.498e3191.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fc79fff7.css",
-    "static/js/main.438857ba.js"
+    "static/js/main.78306b20.js"
   ]
 }
